@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Front Page</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-image: url('lala.jpg'); /* Your background */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 2px black;
+      user-select: none;
+    }
+
+    #catContainer {
+      cursor: pointer;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+
+    #catContainer.zoom-out {
+      transform: scale(2);
+      opacity: 0;
+    }
+
+    #catContainer img {
+      width: 120px;
+      height: 120px;
+      image-rendering: pixelated;
+    }
+  </style>
+</head>
+<body>
+  <h1>ㄔ卄ㄖㄩ尺 ㄏ卄𠘨</h1>
+
+  <div id="catContainer" title="Click me!">
+    <img src="kopoi.gif" alt="Pixel Cat" />
+    <audio id="hissSound" src="hiss.mp3" preload="auto"></audio>
+  </div>
+
+  <script>
+    const catContainer = document.getElementById('catContainer');
+    const hissSound = document.getElementById('hissSound');
+
+    catContainer.addEventListener('click', () => {
+      // Set flag to show flashbang gif on main.html
+      sessionStorage.setItem('showFlashbang', 'true');
+
+      hissSound.currentTime = 0;
+      hissSound.play();
+
+      catContainer.classList.add('zoom-out');
+
+      catContainer.addEventListener('transitionend', () => {
+        window.location.href = 'main.html'; // ✅ Corrected redirect
+      }, { once: true });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Play Zone</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('gam.gif') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    .game-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+      background: rgba(0, 0, 0, 0.4); /* semi-transparent dark background */
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      max-width: 350px;
+      width: 100%;
+    }
+
+    .game-links a {
+      background: linear-gradient(45deg, #4a90e2, #9013fe);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      color: white;
+      font-size: 1.25rem;
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 4px 10px rgba(144, 19, 254, 0.6);
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      text-align: center;
+    }
+
+    .game-links a:hover,
+    .game-links a:focus {
+      background: linear-gradient(45deg, #9013fe, #4a90e2);
+      box-shadow: 0 0 15px #9013fe, 0 0 25px #4a90e2;
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    .return-button {
+      align-self: flex-start;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid white;
+      color: white;
+      font-size: 1rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+      margin-bottom: 1rem;
+    }
+
+    .return-button:hover,
+    .return-button:focus {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* Play music button style */
+    #playMusicBtn {
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      border: none;
+      border-radius: 20px;
+      padding: 0.8rem 2rem;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 75, 43, 0.6);
+      transition: background 0.3s ease, transform 0.2s ease;
+      margin-bottom: 1.5rem;
+      user-select: none;
+      font-weight: bold;
+    }
+
+    #playMusicBtn:hover,
+    #playMusicBtn:focus {
+      background: linear-gradient(45deg, #ff4b2b, #ff416c);
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* Street Fighter GIF at bottom right */
+    #fighterGif {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 100px;
+      height: auto;
+      border-radius: 8px;
+      z-index: 1000;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+
+    #fighterGif:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Return Button -->
+  <a href="index.html" class="return-button" role="button" aria-label="Return to main page">⏪ Return to Main Page</a>
+
+  <!-- Play Music Button -->
+  <button id="playMusicBtn" aria-label="Play background music">🎵 Play Music</button>
+
+  <h1 id="pageTitle">🎮 Ｃｈｏｏｓｅ Ｙｏｕｒ Ｇａｍｅ Ａｒｅｎａ</h1>
+
+  <nav aria-labelledby="pageTitle" class="game-links">
+    <a href="https://www.y8.com" target="_blank" rel="noopener noreferrer" aria-label="Open Y8 Games in a new tab">Y8 Games</a>
+    <a href="https://www.armorgames.com" target="_blank" rel="noopener noreferrer" aria-label="Open Armor Games in a new tab">Armor Games</a>
+    <a href="https://poki.com" target="_blank" rel="noopener noreferrer" aria-label="Open Poki in a new tab">Poki</a>
+    <a href="https://crazygames.com" target="_blank" rel="noopener noreferrer" aria-label="Open CrazyGames in a new tab">CrazyGames</a>
+    <a href="https://www.kongregate.com" target="_blank" rel="noopener noreferrer" aria-label="Open Kongregate in a new tab">Kongregate</a>
+  </nav>
+
+  <!-- Background audio element, hidden -->
+  <audio id="bgMusic" loop>
+    <source src="asd.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Street Fighter GIF -->
+  <img id="fighterGif" src="hak.gif" alt="Street Fighter" />
+
+  <script>
+    const playBtn = document.getElementById('playMusicBtn');
+    const audio = document.getElementById('bgMusic');
+
+    playBtn.addEventListener('click', () => {
+      audio.play().then(() => {
+        playBtn.style.display = 'none'; // Hide button after music starts
+      }).catch(err => {
+        console.error('Error playing audio:', err);
+      });
+    });
+  </script>
+
+</body>
+</html>

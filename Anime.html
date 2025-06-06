@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anime and Chill</title>
+  <style>
+    /* Body with GIF background */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      height: 100vh;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: url('ret.gif') no-repeat center center fixed;
+      background-size: cover;
+      background-color: #111;
+      position: relative;
+    }
+
+    /* Overlay effect for better contrast */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    /* Make sure content is above overlay */
+    h1, #enjoyBtn, #dropdown, #returnBtn {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Glitch title effect */
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px #00ffff;
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #00ffff, -2px -2px #ff00ff; }
+      20% { text-shadow: -2px -2px #00ffff, 2px 2px #ff00ff; }
+      40% { text-shadow: 2px -2px #00ffff, -2px 2px #ff00ff; }
+      60% { text-shadow: -2px 2px #00ffff, 2px -2px #ff00ff; }
+      80% { text-shadow: 2px 2px #00ffff, -2px -2px #ff00ff; }
+      100% { text-shadow: none; }
+    }
+
+    /* Enjoy Button */
+    #enjoyBtn {
+      background: linear-gradient(45deg, #ff4e50, #f9d423);
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #111;
+      cursor: pointer;
+      box-shadow: 0 0 15px #ff4e50;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+
+    #enjoyBtn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #f9d423;
+    }
+
+    /* Dropdown container */
+    #dropdown {
+      margin-top: 1rem;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      width: 280px;
+      display: none;
+      flex-direction: column;
+      padding: 1rem 0;
+      user-select: none;
+    }
+
+    /* Show dropdown */
+    #dropdown.show {
+      display: flex;
+    }
+
+    /* Dropdown links */
+    #dropdown a {
+      padding: 0.75rem 1.5rem;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    #dropdown a:hover {
+      background: rgba(255, 255, 255, 0.3);
+      color: #000;
+      border-radius: 8px;
+    }
+
+    /* Return button */
+    #returnBtn {
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid #00ffff;
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    #returnBtn:hover {
+      background: rgba(0, 255, 255, 0.3);
+      color: #000;
+      border-color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>𝔸𝕟𝕚𝕞𝕖 𝕒𝕟𝕕 ℂ𝕙𝕚𝕝𝕝</h1>
+
+  <button id="enjoyBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown">
+    Enjoy
+  </button>
+
+  <nav id="dropdown" role="menu" aria-label="Anime websites list">
+    <a href="https://www.crunchyroll.com" target="_blank" role="menuitem">Crunchyroll</a>
+    <a href="https://www.funimation.com" target="_blank" role="menuitem">Funimation</a>
+    <a href="https://www.anime-planet.com" target="_blank" role="menuitem">Anime-Planet</a>
+    <a href="https://www9.gogoanime.io" target="_blank" role="menuitem">GogoAnime</a>
+    <a href="https://www.netflix.com" target="_blank" role="menuitem">Netflix Anime</a>
+  </nav>
+
+  <!-- Return Button -->
+  <a href="index.html" id="returnBtn">⟵ Return to Main Page</a>
+
+  <script>
+    const enjoyBtn = document.getElementById('enjoyBtn');
+    const dropdown = document.getElementById('dropdown');
+
+    enjoyBtn.addEventListener('click', () => {
+      const isShown = dropdown.classList.toggle('show');
+      enjoyBtn.setAttribute('aria-expanded', isShown);
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener('click', (e) => {
+      if (!enjoyBtn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.remove('show');
+        enjoyBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+
+</body>
+</html>
+    
